@@ -8,11 +8,16 @@ var duckThree = document.getElementById("duckThree");
 var counter = document.getElementById('counter'),
     count = 0;
 
+var missCounter = document.getElementById('missCounter'),
+    missCount = 0;
+
 function startGame() {
     if (start.style.display === 'block'){
         start.style.display = 'none';
         count = 0;
         counter.innerText = "Total Ducks: " + count;
+        missCount = 0;
+        missCounter.innerText = "Total Misses: " + missCount;
         targets.style.display = 'block';
         duckOne.style.display = 'block';
         duckTwo.style.display = 'block';
@@ -91,6 +96,8 @@ function hitTargetThree(){
     if(duckThree.style.display === 'block'){
         duckThree.style.display = "none";
         count -= 1;
+        missCount += 1;
+        missCounter.innerText = "Total Misses: " + missCount;
         counter.innerText = "Total Ducks: " + count;
         setTimeout(() => {
             duckThree.style.top = (Math.random()*(53-10+1))+10+'%';
@@ -98,6 +105,11 @@ function hitTargetThree(){
             duckThree.style.display = 'block'
         }, 250);
     }
+}
+
+function missedShot(){
+    missCount += 1;
+    missCounter.innerText = "Total Misses: " + missCount;
 }
 
 
